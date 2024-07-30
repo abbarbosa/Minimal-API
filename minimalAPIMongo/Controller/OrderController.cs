@@ -53,7 +53,7 @@ namespace minimalAPIMongo.Controller
 
 
         [HttpPost]
-        public async Task<ActionResult> Create(Order order)
+        public async Task<ActionResult<Order>> Create(Order order)
         {
             try
             {
