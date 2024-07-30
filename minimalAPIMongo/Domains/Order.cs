@@ -10,25 +10,27 @@ namespace minimalAPIMongo.Domains
 
         [BsonElement("_id"), BsonRepresentation(BsonType.ObjectId)]
         public string? Id { get; set; }
-
-        [BsonElement("clientId")]
-        public string? ClientId { get; set; }
-        
-        [BsonElement("productId")]
-        public string? ProductId { get; set; }
-
+       
         [BsonElement("date")]
-        public string? Date { get; set; }
+        public DateTime Date { get; set; }
 
         [BsonElement("status")]
         public string? Status {  get; set; }
+
+
+        [BsonElement("clientId")]
+        public string? ClientId { get; set; }
+
+        [BsonElement("products")]
+        public List<string> Products { get; set; }
+
 
         public Dictionary<string, string> AdditionalAtributes { get; set; }
 
 
         public Order()
         {
-            AdditionalAtributes = new Dictionary<string, string>();
+            Products = new List<string>();
         }
     }
 }
