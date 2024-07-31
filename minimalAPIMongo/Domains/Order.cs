@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
+using System.Text.Json.Serialization;
 
 namespace minimalAPIMongo.Domains
 {
@@ -12,17 +13,29 @@ namespace minimalAPIMongo.Domains
         public string? Id { get; set; }
        
         [BsonElement("date")]
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
 
         [BsonElement("status")]
         public string? Status {  get; set; }
 
+        //ref para cadastrar um pedido com produtos
+        [BsonElement("productId")]
+        [JsonIgnore]
+        public List<string> ProductId { get; set; }
+
+
+        //ref para listar pedidos
+        [BsonElement("products")]
+        public List<Product>? Products { get; set; }
+
 
         [BsonElement("clientId")]
+        [JsonIgnore]
         public string? ClientId { get; set; }
 
-        [BsonElement("products")]
-        public List<string> Products { get; set; }
+        [BsonElement("client")]
+        public Client? Client { get; set; }
+
 
 
         public Dictionary<string, string> AdditionalAtributes { get; set; }
@@ -30,7 +43,7 @@ namespace minimalAPIMongo.Domains
 
         public Order()
         {
-            Products = new List<string>();
+            Products = new List<Product>();
         }
     }
 }
